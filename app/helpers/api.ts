@@ -1,4 +1,3 @@
-
 const header = { 
         "Content-Type": "application/json",
         Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzhkOTBjNjFjYzI2MzJhOWQwOGM2NyIsImVtYWlsIjoiYW5qaGVsb0B0ZXN0LmNvbSIsIm5hbWUiOiJhbmpoZWxvICAiLCJpYXQiOjE3NDg1NTYwOTB9.x47LgbILhqTeRTyzb8HOtwHmpmTdS1aBf_7FilI1-XY"
@@ -32,4 +31,14 @@ export const fetchCardData = async () => {
   } catch (error) {
    console.log('Error fetchCardData', error) 
   }
+}
+
+export const fetchRevenue = async () => {
+  try {
+    const fetchRevenue = await fetch(`${process.env.BACKEND_URL}/revenues`, {headers: header})
+    const revenueResult = await fetchRevenue.json()
+    return revenueResult;
+  } catch (error) {
+    console.log('Error in fetchRevenue', error)
+  } 
 }
