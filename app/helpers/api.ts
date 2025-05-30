@@ -1,0 +1,35 @@
+
+const header = { 
+        "Content-Type": "application/json",
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzhkOTBjNjFjYzI2MzJhOWQwOGM2NyIsImVtYWlsIjoiYW5qaGVsb0B0ZXN0LmNvbSIsIm5hbWUiOiJhbmpoZWxvICAiLCJpYXQiOjE3NDg1NTYwOTB9.x47LgbILhqTeRTyzb8HOtwHmpmTdS1aBf_7FilI1-XY"
+      }
+
+export const fetchCardData = async () => {
+  try {
+    const [getCustomerCount, getInvoicesCount, getInvoicesStatusCound] = await Promise.all([
+      fetch(`${process.env.BACKEND_URL}/customer/count`, { headers: header }),
+      fetch(`${process.env.BACKEND_URL}/invoices/count`, { headers: header }),
+      fetch(`${process.env.BACKEND_URL}/invoices/status-count`, { headers: header })
+    ])
+
+    const resultGetCustomerCount = await getCustomerCount.json();
+    const resultInvoicesCount = await getInvoicesCount.json();
+    const resultInvoicesStatusCount = await getInvoicesStatusCound.json();
+
+
+    const numberOfInvoices = Number(resultInvoicesCount ?? "0")
+    const numberOfCustomers = Number(resultGetCustomerCount ?? "0")
+    const totalPaidInvoices = resultInvoicesStatusCount.paid ?? "0"
+    const totalPendingInvoices = resultInvoicesStatusCount.pending ?? '0'
+
+    return {
+      numberOfInvoices,
+      numberOfCustomers,
+      totalPaidInvoices,
+      totalPendingInvoices
+    }
+    
+  } catch (error) {
+   console.log('Error fetchCardData', error) 
+  }
+}
