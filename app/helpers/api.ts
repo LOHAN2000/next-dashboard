@@ -42,3 +42,13 @@ export const fetchRevenue = async () => {
     console.log('Error in fetchRevenue', error)
   } 
 }
+
+export const fetchLatestInvoices = async () => {
+  try {
+    const fetchInvoices = await fetch(`${process.env.BACKEND_URL}/invoices`, {headers: header})
+    const invoicesResult = await fetchInvoices.json();
+    return invoicesResult;
+  } catch (error) {
+    console.log('Error in fetchLatestInvoices', error)
+  }
+}

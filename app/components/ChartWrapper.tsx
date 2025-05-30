@@ -7,7 +7,7 @@ const ChartWrapper = async () => {
   const revenueResult = await fetchRevenue();
 
   return (
-    <RevenueChart revenue={revenueResult} chartHeight={350}/>
+    <RevenueChart revenue={revenueResult} chartHeight={300}/>
   )
 }
 
