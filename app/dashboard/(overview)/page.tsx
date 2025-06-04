@@ -1,8 +1,10 @@
-import React from 'react'
-import { bebas } from '../ui/fonts'
-import CardWrapper from '../components/CardWrapper'
-import ChartWrapper from '../components/ChartWrapper'
-import LatestInvoicesWrapper from '../components/LatestInvoicesWrapper'
+import React, { Suspense } from 'react'
+import ChartWrapper from '@/app/components/ChartWrapper'
+import LatestInvoicesWrapper from '@/app/components/LatestInvoicesWrapper'
+import { bebas } from '@/app/ui/fonts'
+import CardWrapper from '@/app/components/CardWrapper'
+import { RevenueChartSkeleton } from '@/app/components/Skeleton'
+
 
 const Dashboard = async () => {
 
@@ -14,7 +16,9 @@ const Dashboard = async () => {
       </div>
       <div className='grid grid-cols-2'>
         <div>
-          <ChartWrapper/>
+          <Suspense fallback={<RevenueChartSkeleton/>}>
+            <ChartWrapper/>
+          </Suspense>
         </div>
         <div>
           <LatestInvoicesWrapper/>

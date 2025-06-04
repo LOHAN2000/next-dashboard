@@ -5,7 +5,6 @@ import LatestInvoices from './LatestInvoices';
 const LatestInvoicesWrapper = async () => {
 
   const invoicesResult = await fetchLatestInvoices();
-  console.log(invoicesResult)
 
   return (
     <LatestInvoices latestInvoices={invoicesResult}/>
