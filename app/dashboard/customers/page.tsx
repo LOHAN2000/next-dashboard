@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Customers = () => {
+const Customers = async () => {
+
   return (
-    <div>Customers</div>
+    <div>
+      <h1>hola</h1>
+    </div>
   )
 }
 

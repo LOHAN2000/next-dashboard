@@ -52,3 +52,14 @@ export const fetchLatestInvoices = async () => {
     console.log('Error in fetchLatestInvoices', error)
   }
 }
+
+export const fetchFilteredInvoices = async (query?: string, currentPage?: number) => {
+  try {
+    const fetchFilteredInvoices = await fetch(`${process.env.BACKEND_URL}/invoices/paginate`, {headers: header});
+    const resultFetchFilteredInvoices = await fetchFilteredInvoices.json()
+
+    return resultFetchFilteredInvoices;
+  } catch (error) {
+    console.log(error)
+  }
+}
