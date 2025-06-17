@@ -2,9 +2,16 @@ import InvoiceWrapper from '@/app/components/InvoiceWrapper'
 import Search from '@/app/components/Search'
 import { InvoicesTableSkeleton } from '@/app/components/Skeleton'
 import { bebas } from '@/app/ui/fonts'
-import React, { Suspense } from 'react'
+import React, { FC, Suspense } from 'react'
 
-const Invoices = () => {
+interface invoicesProps {
+  searchParams?: Promise<{query?: string}>
+}
+
+const Invoices: FC<invoicesProps> = async ({searchParams}) => {
+
+  const params = await searchParams;
+
   return (
     <div className='w-full p-4 '>
       <div className='flex w-full items-center justify-between'>
@@ -14,7 +21,7 @@ const Invoices = () => {
         <Search/>
       </div>
       <Suspense fallback={<InvoicesTableSkeleton/>}>
-        <InvoiceWrapper/>
+        <InvoiceWrapper query={params?.query}/>
       </Suspense>
       
     </div>

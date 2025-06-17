@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { fetchFilteredInvoices } from '../helpers/api'
 import { InvoiceTable } from 'anjrot-components';
 
-const InvoiceWrapper = async () => {
+interface InvoiceWrapperProps {
+  query?: string
+}
 
-  const getInvoices = await fetchFilteredInvoices();
+const InvoiceWrapper: FC<InvoiceWrapperProps> = async ({query}) => {
+
+  const getInvoices = await fetchFilteredInvoices(query || "");
 
   return (
     <InvoiceTable invoices={getInvoices}/>
