@@ -63,3 +63,14 @@ export const fetchFilteredInvoices = async (query?: string, currentPage?: number
     console.log(error)
   }
 }
+
+export const fetchInvoicesPages = async (query: string) => {
+  try {
+    const getInvoicesPages = await fetch(`${process.env.BACKEND_URL}/invoices/page-count?q=${query}`, {headers: header});
+    const resultGetInvoicesPages = await getInvoicesPages.json()
+
+    return resultGetInvoicesPages;
+  } catch (error) {
+    console.log(error)
+  }
+}

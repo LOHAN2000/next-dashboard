@@ -1,4 +1,5 @@
 import InvoiceWrapper from '@/app/components/InvoiceWrapper'
+import PaginationWrapper from '@/app/components/PaginationWrapper'
 import Search from '@/app/components/Search'
 import { InvoicesTableSkeleton } from '@/app/components/Skeleton'
 import { bebas } from '@/app/ui/fonts'
@@ -23,7 +24,9 @@ const Invoices: FC<invoicesProps> = async ({searchParams}) => {
       <Suspense fallback={<InvoicesTableSkeleton/>}>
         <InvoiceWrapper query={params?.query}/>
       </Suspense>
-      
+      <div className='flex justify-center'>
+        <PaginationWrapper totalPages={10}/>
+      </div>
     </div>
   )
 }
