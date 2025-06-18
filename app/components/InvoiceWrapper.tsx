@@ -4,11 +4,12 @@ import { InvoiceTable } from 'anjrot-components';
 
 interface InvoiceWrapperProps {
   query?: string
+  page?: number
 }
 
-const InvoiceWrapper: FC<InvoiceWrapperProps> = async ({query}) => {
+const InvoiceWrapper: FC<InvoiceWrapperProps> = async ({query, page}) => {
 
-  const getInvoices = await fetchFilteredInvoices(query || "");
+  const getInvoices = await fetchFilteredInvoices(query || "", page);
 
   return (
     <InvoiceTable invoices={getInvoices}/>
