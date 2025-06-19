@@ -1,3 +1,4 @@
+import { CreateInvoice } from '@/app/components/Buttons'
 import InvoiceWrapper from '@/app/components/InvoiceWrapper'
 import PaginationWrapper from '@/app/components/PaginationWrapper'
 import Search from '@/app/components/Search'
@@ -21,8 +22,9 @@ const Invoices: FC<invoicesProps> = async ({ searchParams }) => {
       <div className='flex w-full items-center justify-between'>
         <h1 className={`${bebas.className} text-2xl`}>Invoices</h1>
       </div>
-      <div className='mt-4 items-center justify-between gap-2 md:mt-8'>
+      <div className='mt-4 flex items-center justify-between gap-2 md:mt-8'>
         <Search/>
+        <CreateInvoice/>
       </div>
       <Suspense fallback={<InvoicesTableSkeleton/>}>
         <InvoiceWrapper query={params?.query} page={params?.page}/>

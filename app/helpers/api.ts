@@ -74,3 +74,14 @@ export const fetchInvoicesPages = async (query: string) => {
     console.log(error)
   }
 }
+
+export const fetchCustomers = async () => {
+  try {
+     const getCustomers = await fetch(`${process.env.BACKEND_URL}/customer`, {headers: header})
+     const resultGetCustomers = await getCustomers.json();
+
+     return resultGetCustomers;
+  } catch (error) {
+    console.log('Error in fetchCustomers', error)
+  }
+}
