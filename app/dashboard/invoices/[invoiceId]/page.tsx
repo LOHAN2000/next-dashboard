@@ -1,8 +1,29 @@
-import React from 'react'
+import Breadcrumbs from '@/app/components/BreadCrums'
+import FormEditWrapper from '@/app/components/FormEditWrapper'
+import { fetchCustomers } from '@/app/helpers/api'
+import React, { FC } from 'react'
 
-const EditInvoice = () => {
+interface EditInvoiceProps {
+  params: Promise<{invoiceId: string}>
+}
+
+const EditInvoice: FC<EditInvoiceProps> = async ({params}) => {
+
+  const path = await params
+
+  const breadCrumbs = [
+    {label: 'Invoices', href: '/dashboard/invoices'},
+    {label: 'Create Invoice', href: `/dashboard/invoices/${path.invoiceId}`, active: true}
+  ]
+
+  const customers = await fetchCustomers();
+  
+
   return (
-    <h1>EditInvoice</h1>
+    <>
+      <Breadcrumbs breadcrumbs={breadCrumbs}/>    
+      <FormEditWrapper customers={customers} />
+    </>
   )
 }
 

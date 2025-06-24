@@ -15,7 +15,6 @@ export function CreateInvoice() {
 }
 
 export function UpdateInvoice({ invoiceId }: { invoiceId: string }) {
-  console.log('Invoice ID desde UpdateInvoice:', invoiceId); // <-- Esto sí aparece en la consola
 
   return (
     <Link
