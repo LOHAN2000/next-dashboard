@@ -5,7 +5,7 @@ import React from 'react'
 
 const breadCrumbs = [
   {label: 'Invoices', href: '/dashboard/invoices'},
-  {label: 'Create Invoice', href: '/dashboard/invoices/true', active: true}
+  {label: 'Create Invoice', href: '/dashboard/invoices', active: true}
 ]
 
 

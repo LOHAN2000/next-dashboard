@@ -14,10 +14,12 @@ export function CreateInvoice() {
   );
 }
 
-export function UpdateInvoice({ id }: { id: string }) {
+export function UpdateInvoice({ invoiceId }: { invoiceId: string }) {
+  console.log('Invoice ID desde UpdateInvoice:', invoiceId); // <-- Esto sí aparece en la consola
+
   return (
     <Link
-      href={`/dashboard/invoices/${id}`}
+      href={`/dashboard/invoices/${invoiceId}`}
       className="rounded-md border p-2 hover:bg-gray-100"
     >
       <BsPencil className="w-5" />

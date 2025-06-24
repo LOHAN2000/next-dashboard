@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/dist/server/api-utils';
+import { redirect } from 'next/navigation';
 import { z } from 'zod'
 
 export type State = {
@@ -55,8 +55,9 @@ export const createInvoice = async (prevState: State, formData: FormData) => {
     customer: customerId
   }
 
+
   try {
-    await fetch (`${process.env.BACKEND_URL}/invoices`, {
+    const response = await fetch (`${process.env.BACKEND_URL}/invoices`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzhkOTBjNjFjYzI2MzJhOWQwOGM2NyIsImVtYWlsIjoiYW5qaGVsb0B0ZXN0LmNvbSIsIm5hbWUiOiJhbmpoZWxvICAiLCJpYXQiOjE3NDg1NTYwOTB9.x47LgbILhqTeRTyzb8HOtwHmpmTdS1aBf_7FilI1-XY"
@@ -64,6 +65,10 @@ export const createInvoice = async (prevState: State, formData: FormData) => {
       method: 'POST',
       body: JSON.stringify(body)
     })
+
+    const data = await response.json();
+
+    
   } catch (error) {
     console.log('Error in action createInvoice', error)
   }
