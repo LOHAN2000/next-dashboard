@@ -1,6 +1,6 @@
 import Breadcrumbs from '@/app/components/BreadCrums'
 import FormEditWrapper from '@/app/components/FormEditWrapper'
-import { fetchCustomers } from '@/app/helpers/api'
+import { fetchCustomers, fetchInvoiceId } from '@/app/helpers/api'
 import React, { FC } from 'react'
 
 interface EditInvoiceProps {
@@ -9,21 +9,22 @@ interface EditInvoiceProps {
 
 const EditInvoice: FC<EditInvoiceProps> = async ({params}) => {
 
-  const path = await params
+  const path = await params;
+  const id =  path.invoiceId
 
   const breadCrumbs = [
     {label: 'Invoices', href: '/dashboard/invoices'},
-    {label: 'Create Invoice', href: `/dashboard/invoices/${path.invoiceId}`, active: true}
+    {label: 'Edit Invoice', href: `/dashboard/invoices/${id}`, active: true}
   ]
 
-  const customers = await fetchCustomers();
-  
+  const [customers, invoice] = await Promise.all([fetchCustomers(), fetchInvoiceId(id)])
+
 
   return (
-    <>
+    <main className='w-full p-4'>
       <Breadcrumbs breadcrumbs={breadCrumbs}/>    
-      <FormEditWrapper customers={customers} />
-    </>
+      <FormEditWrapper invoice={invoice} customers={customers}/>
+    </main>
   )
 }
 

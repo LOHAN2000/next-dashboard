@@ -19,6 +19,13 @@ export interface FormProps {
   state: State;
 }
 
+export interface Invoice {
+  id: string,
+  customer_id: string,
+  amount: number,
+  status: string
+}
+
 
 export const Form: FC<FormProps> = ({ customers, formAction, state }) => {
   return (

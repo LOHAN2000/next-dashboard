@@ -85,3 +85,14 @@ export const fetchCustomers = async () => {
     console.log('Error in fetchCustomers', error)
   }
 }
+
+export const fetchInvoiceId = async (id: string) => {
+  try {
+     const getInvoiceById = await fetch(`${process.env.BACKEND_URL}/invoice/${id}`, {headers: header})
+     const resultGetInvoiceById = await getInvoiceById.json();
+
+     return resultGetInvoiceById;
+  } catch (error) {
+    console.log('Error in fetchCustomers', error)
+  }
+}
